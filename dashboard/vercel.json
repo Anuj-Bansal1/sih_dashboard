@@ -1,6 +1,6 @@
 {
-    "builds": [{ "src": "app1.py", "use": "@now/python" }],
-    "routes": [{ "src": "/(.*)", "dest": "app1.py" }],
+    "builds": [{ "src": "index.py", "use": "@now/python" }],
+    "routes": [{ "src": "/(.*)", "dest": "index.py" }],
     "env": {
       "PYTHON_VERSION": "3.9"  
     }
