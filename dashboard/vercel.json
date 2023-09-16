@@ -1,0 +1,8 @@
+{
+    "builds": [{ "src": "app1.py", "use": "@now/python" }],
+    "routes": [{ "src": "/(.*)", "dest": "app1.py" }],
+    "env": {
+      "PYTHON_VERSION": "3.9"  
+    }
+  }
+  
