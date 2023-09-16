@@ -1,6 +1,13 @@
 {
-    "builds": [{ "src": "index.py", "use": "@vercel/python" }],
-    "routes": [{ "src": "/(.*)", "dest": "index.py" }],
-  
-  }
-  
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.py",  // Updated: Change this to your new main Python script filename
+      "use": "@now/python",
+      "config": { "maxLambdaSize": "50mb" }  // Optional: Adjust the Lambda size if needed
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "index.py" }  // Updated: Change the destination to the new filename
+  ]
+}
