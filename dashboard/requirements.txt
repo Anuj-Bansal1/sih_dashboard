@@ -1,7 +1,6 @@
 panel
 matplotlib
 folium
-itertools
 pandas
 numpy
 hvplot
