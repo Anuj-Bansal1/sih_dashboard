@@ -280,5 +280,8 @@ if __name__ == "__main__":
     app = create_dashboard()
     app.servable()
     app.show()
-    
+if __name__.startswith("bokeh"):
+    # start with panel serve script.py
+    app = create_dashboard()
+    app.servable()
 
