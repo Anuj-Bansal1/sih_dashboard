@@ -24,6 +24,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from itertools import product
 
+# html_content = '''<!DOCTYPE html> <html> <body> <button onclick="toggleFullscreen()">Go Fullscreen</button> <iframe id="myIframe" src="https://copilotstudio.microsoft.com/environments/Default-1be3a563-7207-487a-a1bf-4c69e3e4930e/bots/cre45_vannaDemo/webchat?__version__=2" frameborder="0" style="width: 100%; height: 100%;" allowfullscreen></iframe> <script> function toggleFullscreen() { var iframe = document.getElementById("myIframe"); if (iframe.requestFullscreen) { iframe.requestFullscreen(); } else if (iframe.mozRequestFullScreen) { // Firefox iframe.mozRequestFullScreen(); } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, and Opera iframe.webkitRequestFullscreen(); } else if (iframe.msRequestFullscreen) { // IE/Edge iframe.msRequestFullscreen(); } } </script> </body> </html> '''
+html_content = ''' <!DOCTYPE html> <html> <body> <button onclick="goFullScreen()">Go Fullscreen</button> <iframe id="myIframe" src="https://copilotstudio.microsoft.com/environments/Default-1be3a563-7207-487a-a1bf-4c69e3e4930e/bots/cre45_testCaseAi/webchat?__version__=2" frameborder="0" style="width: 100%; height: 100%;"></iframe> <script> function goFullScreen() { window.location.href = "https://copilotstudio.microsoft.com/environments/Default-1be3a563-7207-487a-a1bf-4c69e3e4930e/bots/cre45_testCaseAi/webchat?__version__=2"; } </script> </body> </html> '''
+html_pane = pn.pane.HTML(html_content, sizing_mode='stretch_both')
 # Generating synthetic data
 states = ["Maharashtra", "Harayana", "Assam", "Himachal pradesh"]
 
@@ -72,7 +75,7 @@ idf = idf1.interactive()
 # In[4]:
 
 
-slider = pn.widgets.IntSlider(start=2011, end=2022, step=1, name="year Value")
+slider = pn.widgets.IntSlider(start=2011, end=2022, step=1, name="year Value", value = 2015)
 
 
 # In[5]:
@@ -248,8 +251,8 @@ tabular_frame
 
 # Create a Panel app
 def create_dashboard():
-    row1 = pn.Row(case_status,plot_pipeline.panel())
-   
+    row1 = pn.Column(case_status,plot_pipeline.panel())
+    row2 = pn.Row(row1,html_pane)
     template = pn.template.FastGridTemplate(
         title = 'Dashboard',
         sidebar = [pn.pane.Markdown("## Indian Evault"),
@@ -261,12 +264,12 @@ def create_dashboard():
                 pn.pane.PNG("supppp.png", sizing_mode = 'scale_both' ),
                   ],
 
-        main = [row1,
+        main = [row2,
                pn.Row(tabular_frame.panel(),map_panel)],
         header_background = "#96695E",
         background_color= "#EDE7DE",
         theme_toggle = False,
-        row_height = 300,
+        row_height = 400,
         sidebar_width = 310,
         site = "Evault",
         
